@@ -1,0 +1,173 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>유학 후기집 : 유유한유학</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="abr.css">
+    </head>
+    <body>
+        <!-- 상단 메뉴 -->
+        <div id="header">
+            <!-- 로고 -->
+            <h1 id="logo">
+                <a href="../../mainscreen_login.html">
+                    <img src="../../asset/logo_main.png" alt="logo_main">
+                </a>
+            </h1>
+
+            <!-- 메뉴 바 -->
+            <div id="menubar">
+                <ul id="menuhover">
+                    <li id='menuhoverli'>
+                        <a>영어권 어학연수</a>
+                        <ul id="submenu">
+                            <li><a href="../eng/eng_region.html">지역별</a></li>
+                            <li><a href="../eng/eng_org.html">교육 기관별</a></li>
+                        </ul>
+                    </li>
+                    <li id='menuhoverli'>
+                        <a>유럽 어학연수</a>
+                        <ul id="submenu">
+                            <li><a href="../europe/eur_region.html">지역별</a></li>
+                            <li><a href="../europe/eur_org.html">교육 기관별</a></li>
+                        </ul>
+                    </li>
+                    <li id='menuhoverli'>
+                        <a>아시아 어학연수</a>
+                        <ul id="submenu">
+                            <li><a href="../asia/asia_region.html">지역별</a></li>
+                            <li><a href="../asia/asia_org.html">교육 기관별</a></li>
+                        </ul>
+                    </li>
+                    <li id='menuhoverli'>
+                        <a>유학이야기</a>
+                        <ul id="submenu">
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="abroadstory.html">유학 후기집</a></li>
+                        </ul>
+                    </li>
+                    <li class="userbar">
+                        <a href="../../">LOGOUT</a>
+                    </li>
+                    <li class="userbar">
+                        <a href="../../user/mypage.html">MYPAGE</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="abrheader">
+            <h1>― 유학 후기집  ―</h1>
+        </div>
+
+        <div>
+            <table class="tablewrap">
+                <tr>
+                    <td><button id="writenodes" class="writebtn">글쓰기</button></td>
+                </tr>
+                <tr class="tableheader">
+                    <td class="numlength">번호</td>
+                    <td class="titlelength">제목</td>
+                    <td class="starlength">별점</td>
+                    <td class="writerlength">작성자</td>
+                    <td class="datelength">작성날짜</td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <table class="tablewrap" id="addnewtable">
+                <tr class="tablenodes">
+                    <td>1</td>
+                    <td>[Wellington College] 뉴질랜드 꼭 가세요</td>
+                    <td>★★★★★</td>
+                    <td>kangaroo</td>
+                    <td>24. 05. 10</td>
+                </tr>
+                <tr class="tablenodes">
+                    <td>2</td>
+                    <td>[XX유학원] 다소 불친절한 상담</td>
+                    <td>★★★☆☆</td>
+                    <td>enging</td>
+                    <td>24. 05. 11</td>
+                </tr>
+                <tr class="tablenodes">
+                    <td>3</td>
+                    <td>[A University] 후기</td>
+                    <td>★★★★☆</td>
+                    <td>iwantosleep</td>
+                    <td>24. 05. 13</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="nodeswrap" id="addnodes" style="display: none;">
+            <input type="text" class="titleform" id="titleinput" placeholder="제목">
+            <select class="starform" id="starinput">
+                <option value="">별점</option>
+                <option value="★☆☆☆☆">★☆☆☆☆</option>
+                <option value="★★☆☆☆">★★☆☆☆</option>
+                <option value="★★★☆☆">★★★☆☆</option>
+                <option value="★★★★☆">★★★★☆</option>
+                <option value="★★★★★">★★★★★</option>
+            </select>
+            <input type="text" class="nameform" id="nameinput" placeholder="작성자">
+            <button id="addinfobtn" class="writebtn">등록</button>
+        </div>
+        <script>
+            var index = 4;
+
+            // 글쓰기 버튼 누르면 input 노출
+            document.getElementById('writenodes').addEventListener('click', function() {
+                const inputinfo = document.getElementById('addnodes');
+                inputinfo.style.display = 'block';
+            });
+
+            document.getElementById('addinfobtn').addEventListener('click', function() {
+                const title = document.getElementById('titleinput').value;
+                const star = document.getElementById('starinput').value;
+                const writer = document.getElementById('nameinput').value;
+                
+                var newnum = document.createElement('td');
+                newnum.innerHTML = `${index}`;
+                index += 1;
+
+                var newtitle = document.createElement('td');
+                newtitle.innerHTML = title;
+
+                var newstar = document.createElement('td');
+                newstar.innerHTML = star;
+                
+                var newwriter = document.createElement('td');
+                newwriter.innerHTML = writer;
+
+                const today = new Date();
+                const year = today.getFullYear();
+                var month = today.getMonth() + 1;
+                var date = today.getDate();
+
+                if (month < 10) {month = `0${month}`;}
+                if (date < 10) {date = `0${date}`;}
+
+                var nowdate = `${year-2000}. ${month}. ${date}`;
+
+                var newdate = document.createElement('td');
+                newdate.innerHTML = nowdate;
+
+                var newtr = document.createElement('tr');
+                newtr.appendChild(newnum);
+                newtr.appendChild(newtitle);
+                newtr.appendChild(newstar);
+                newtr.appendChild(newwriter);
+                newtr.appendChild(newdate);
+                
+                alert('등록이 완료되었습니다.');
+                addnewtable.appendChild(newtr);
+
+                titleinput.value = '';
+                starinput.value = '';
+                nameinput.value = '';
+            });
+        </script>
+    </body>
+</html>
